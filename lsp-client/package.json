@@ -1,6 +1,6 @@
 {
 	"name": "build2-lsp-client",
-	"description": "VSCode client extension for build2 LSP",
+	"description": "VSCode build2 LSP client",
 	"author": "Cameron Angus",
 	"license": "MIT",
 	"version": "0.0.1",

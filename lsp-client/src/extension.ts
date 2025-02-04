@@ -17,12 +17,12 @@ const extensionName = 'build2';
 
 let client: LanguageClient;
 
-function getServerLocation(): string | undefined {
+function getLSPServerLocation(): string | undefined {
 	const config = workspace.getConfiguration(extensionName);
 	return config.get<string>("serverLocation");
 }
 
-function startServer(serverLocation: string) {
+function startLSPServer(serverLocation: string) {
 	if (!fs.existsSync(serverLocation)) {
 		window.showErrorMessage(`LSP server executable not found: ${serverLocation}`);
 		return;
@@ -77,22 +77,22 @@ function stopServer(): Thenable<void> | undefined {
 }
 
 export function activate(context: ExtensionContext) {
-	const serverLocation = getServerLocation();
+	const serverLocation = getLSPServerLocation();
 	if (serverLocation) {
-		startServer(serverLocation);
+		startLSPServer(serverLocation);
 	} else {
-		window.showErrorMessage(`LSP server path is not set. Please configure '${extensionName}.ServerLocation' in settings.`);
+		window.showErrorMessage(`LSP server path is not set. Please configure '${extensionName}.LSP.ServerLocation' in settings.`);
 	}
 
 	// Listen for configuration changes
 	context.subscriptions.push(
 		// @TODO: Some sort of debounce
 		workspace.onDidChangeConfiguration(async (event) => {
-			if (event.affectsConfiguration(`${extensionName}.serverLocation`)) {
-				const newServerLocation = getServerLocation();
+			if (event.affectsConfiguration(`${extensionName}.LSP.serverLocation`)) {
+				const newServerLocation = getLSPServerLocation();
 				if (newServerLocation && newServerLocation !== serverLocation) {
 					await stopServer();
-					startServer(newServerLocation);
+					startLSPServer(newServerLocation);
 				}
 			}
 		})
