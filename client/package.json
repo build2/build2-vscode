@@ -1,0 +1,23 @@
+{
+	"name": "build2-lsp-client",
+	"description": "VSCode client extension for build2 LSP",
+	"author": "Cameron Angus",
+	"license": "MIT",
+	"version": "0.0.1",
+	"publisher": "build2",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"engines": {
+		"vscode": "^1.75.0"
+	},
+	"dependencies": {
+		"glob": "^11.0.0",
+		"vscode-languageclient": "^9.0.1"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.75.1",
+		"@vscode/test-electron": "^2.3.9"
+	}
+}
