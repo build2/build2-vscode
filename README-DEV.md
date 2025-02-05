@@ -2,7 +2,7 @@
 
 ## Outline
 
-VS Code extension project, which currently just serves as a simple client for integration of the [build2-lsp-server]().
+VS Code extension project, which currently just serves as a simple client for integration of the [build2-lsp-server](https://github.com/kamrann/build2-lsp-server).
 
 ## Project Structure
 
