@@ -1,7 +1,4 @@
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
+// Copyright (c) Cameron Angus.
 
 import { workspace, window, ExtensionContext } from 'vscode';
 import * as fs from "fs";
@@ -18,7 +15,7 @@ const extensionName = 'build2';
 let client: LanguageClient;
 
 function getLSPServerLocation(): string | undefined {
-	const config = workspace.getConfiguration(extensionName);
+	const config = workspace.getConfiguration(`${extensionName}.LSP`);
 	return config.get<string>("serverLocation");
 }
 
@@ -44,12 +41,16 @@ function startLSPServer(serverLocation: string) {
 		// Register the server for plain text documents
 		// @TODO: Look into if we should/how to register custom languages.
 		documentSelector: [
-			{ scheme: 'file', language: 'plaintext', pattern: "**/{buildfile,build2file,*.build,*.build2}" },
+			{ scheme: 'file', language: 'build2-manifest' },
+			{ scheme: 'file', language: 'buildfile' },
 		],
 		synchronize: {
 			// Notify the server about file changes to files contained in the workspace
 			// @NOTE: Believe this is for sending change notifications specifically for files that are outside the workspace.
-			fileEvents: workspace.createFileSystemWatcher('**/{buildfile,build2file,*.build,*.build2}')
+			fileEvents: [
+				workspace.createFileSystemWatcher('**/{manifest,*.manifest}'),
+				workspace.createFileSystemWatcher('**/{buildfile,build2file,*.build,*.build2}'),
+			],
 		}
 	};
 

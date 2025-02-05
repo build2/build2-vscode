@@ -1,6 +1,8 @@
 {
 	"name": "build2-vscode",
+	"displayName": "build2",
 	"description": "VSCode extension package for build2 integration",
+	"icon": "./resources/build2-logo.png",
 	"author": "Cameron Angus",
 	"license": "MIT",
 	"version": "0.1.0",
@@ -17,7 +19,6 @@
 		"vscode": "^1.75.0"
 	},
 	"activationEvents": [
-		"onLanguage:plaintext"
 	],
 	"main": "./lsp-client/out/extension",
 	"contributes": {
@@ -50,8 +51,40 @@
 						"description": "Traces the communication between VS Code and the language server."
 					}
 				}
+			},
+			{
+				"type": "object",
+				"title": "when needed, add more properties here and rename above section title to 'LSP'"
 			}
-		]
+		],
+		"languages": [
+			{
+        "id": "build2-manifest",
+        "extensions": [],
+        "filenames": ["manifest", "repositories.manifest", "packages.manifest"],
+        "configuration": "./lang/manifest-language-configuration.json",
+        "icon": {
+        }
+      },
+      {
+        "id": "buildfile",
+        "extensions": [".build", ".build2"],
+        "filenames": ["buildfile", "build2file"],
+        "configuration": "./lang/buildfile-language-configuration.json",
+        "icon": {
+          "light": "./resources/build2-logo.png",
+          "dark": "./resources/build2-logo.png"
+        }
+      },
+      {
+        "id": "testscript",
+        "extensions": [],
+        "filenames": ["testscript"],
+        "configuration": "./lang/testscript-language-configuration.json",
+        "icon": {
+        }
+      }
+    ]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
