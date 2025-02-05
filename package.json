@@ -62,9 +62,7 @@
         "id": "build2-manifest",
         "extensions": [],
         "filenames": ["manifest", "repositories.manifest", "packages.manifest"],
-        "configuration": "./lang/manifest-language-configuration.json",
-        "icon": {
-        }
+        "configuration": "./lang/manifest-language-configuration.json"
       },
       {
         "id": "buildfile",
@@ -80,9 +78,7 @@
         "id": "testscript",
         "extensions": [],
         "filenames": ["testscript"],
-        "configuration": "./lang/testscript-language-configuration.json",
-        "icon": {
-        }
+        "configuration": "./lang/testscript-language-configuration.json"
       }
     ]
 	},
